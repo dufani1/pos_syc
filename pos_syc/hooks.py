@@ -107,21 +107,26 @@ app_license = "MIT"
 # ---------------
 
 # scheduler_events = {
-# 	"all": [
-# 		"pos_syc.tasks.all"
-# 	],
-# 	"daily": [
-# 		"pos_syc.tasks.daily"
-# 	],
 # 	"hourly": [
-# 		"pos_syc.tasks.hourly"
+# 		"pos_syc.api.check_hourly_sync"
 # 	],
-# 	"weekly": [
-# 		"pos_syc.tasks.weekly"
-# 	]
-# 	"monthly": [
-# 		"pos_syc.tasks.monthly"
-# 	]
+#     "cron": {
+#         "*/5 * * * *": [
+#             "pos_syc.api.periodic_sync_hook_5min"
+#         ],
+#         "*/10 * * * *": [
+#             "pos_syc.api.periodic_sync_hook_10min"
+#         ],
+#         "*/20 * * * *": [
+#             "pos_syc.api.periodic_sync_hook_20min"
+#         ],
+#         "*/30 * * * *": [
+#             "pos_syc.api.periodic_sync_hook_30min"
+#         ],
+#         "*/60 * * * *": [
+#             "pos_syc.api.periodic_sync_hook_60min"
+#         ]
+#     }
 # }
 
 # Testing

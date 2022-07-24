@@ -1,0 +1,88 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-07-23 23:00:29.172785",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "periodic_sync",
+  "column_break_2",
+  "last_update",
+  "settings_and_security_section",
+  "sym_domain",
+  "column_break_4",
+  "api_key",
+  "api_secret"
+ ],
+ "fields": [
+  {
+   "default": "Disabled",
+   "fieldname": "periodic_sync",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Periodical Synchronization",
+   "options": "Disabled\n1\n5\n10\n30\n60",
+   "reqd": 1
+  },
+  {
+   "fieldname": "settings_and_security_section",
+   "fieldtype": "Section Break",
+   "label": "Settings and Security"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "api_key",
+   "fieldtype": "Data",
+   "label": "API Key",
+   "reqd": 1
+  },
+  {
+   "fieldname": "api_secret",
+   "fieldtype": "Password",
+   "label": "API Secret",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sym_domain",
+   "fieldtype": "Data",
+   "label": "SYM Domain",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "last_update",
+   "fieldtype": "Datetime",
+   "label": "Last Update",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2022-07-24 10:08:58.294493",
+ "modified_by": "Administrator",
+ "module": "Pos Syc",
+ "name": "SYC Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

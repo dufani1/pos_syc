@@ -1,0 +1,37 @@
+{
+ "category": "Modules",
+ "charts": [],
+ "creation": "2022-07-24 10:12:31.080012",
+ "developer_mode_only": 0,
+ "disable_user_customization": 0,
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "extends_another_page": 0,
+ "hide_custom": 0,
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "label": "SYC Dashboard",
+ "links": [],
+ "modified": "2022-07-24 10:15:07.156648",
+ "modified_by": "Administrator",
+ "module": "Pos Syc",
+ "name": "SYC Dashboard",
+ "owner": "Administrator",
+ "pin_to_bottom": 0,
+ "pin_to_top": 1,
+ "shortcuts": [
+  {
+   "doc_view": "",
+   "label": "SYC Sync Logs",
+   "link_to": "SYC Sync Logs",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "",
+   "label": "SYC Settings",
+   "link_to": "SYC Settings",
+   "type": "DocType"
+  }
+ ]
+}
