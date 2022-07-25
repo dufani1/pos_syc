@@ -33,8 +33,8 @@ def periodic_sync_hook_60min():
 @frappe.whitelist()
 def syc_sync_main():
     # enqueue jobs in production
-    # frappe.enqueue(_sync_main, queue="long", is_async=True, job_name="SYC Main Sync")
-    _sync_main()
+    frappe.enqueue(_sync_main, queue="long", is_async=True, job_name="SYC Main Sync")
+    # _sync_main()
     return True
 
 
