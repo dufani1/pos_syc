@@ -1,12 +1,9 @@
-import json
-from urllib import response
+import time
 import frappe
+from pos_syc.sync_customers import sync_customers
 from pos_syc.sync_items import sync_items
-from pos_syc.utils import get_syc_settings, update_last_sync_time
-
-import requests
-
-from frappe.frappeclient import FrappeClient
+from pos_syc.utils import create_sync_log, get_syc_settings, update_last_sync_time
+frappe.local.form_dict["sync_in_progress"] = False
 
 def periodic_sync_hook_5min():
     if frappe.get_single("SYC Settings").periodic_sync == "5":
@@ -35,14 +32,24 @@ def periodic_sync_hook_60min():
 
 @frappe.whitelist()
 def syc_sync_main():
+    # enqueue jobs in production
     # frappe.enqueue(_sync_main, queue="long", is_async=True, job_name="SYC Main Sync")
     _sync_main()
     return True
 
-def _sync_main():
-    # sart syncing items
-    sync_items()
 
+def _sync_main():
+
+    try:
+        # sequential sync
+        sync_customers()
+        sync_items()
+
+        # update last sync time if sync jobs without problems
+        update_last_sync_time()
+    except Exception as e:
+        print(e)
+        create_sync_log(status="Error", data=frappe.get_traceback())
 
 
 @frappe.whitelist(allow_guest=False, methods=["GET"])

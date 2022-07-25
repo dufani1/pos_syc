@@ -13,7 +13,8 @@
   "sym_domain",
   "column_break_4",
   "api_key",
-  "api_secret"
+  "api_secret",
+  "sync_in_progress"
  ],
  "fields": [
   {
@@ -61,12 +62,18 @@
    "fieldtype": "Datetime",
    "label": "Last Update",
    "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "sync_in_progress",
+   "fieldtype": "Check",
+   "label": "Sync in Progress"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2022-07-24 10:08:58.294493",
+ "modified": "2022-07-25 20:25:45.784667",
  "modified_by": "Administrator",
  "module": "Pos Syc",
  "name": "SYC Settings",
