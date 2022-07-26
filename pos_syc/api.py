@@ -3,7 +3,6 @@ import frappe
 from pos_syc.sync_customers import sync_customers
 from pos_syc.sync_items import sync_items
 from pos_syc.utils import create_sync_log, get_syc_settings, update_last_sync_time
-frappe.local.form_dict["sync_in_progress"] = False
 
 def periodic_sync_hook_5min():
     if frappe.get_single("SYC Settings").periodic_sync == "5":

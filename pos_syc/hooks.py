@@ -106,28 +106,25 @@ app_license = "MIT"
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"hourly": [
-# 		"pos_syc.api.check_hourly_sync"
-# 	],
-#     "cron": {
-#         "*/5 * * * *": [
-#             "pos_syc.api.periodic_sync_hook_5min"
-#         ],
-#         "*/10 * * * *": [
-#             "pos_syc.api.periodic_sync_hook_10min"
-#         ],
-#         "*/20 * * * *": [
-#             "pos_syc.api.periodic_sync_hook_20min"
-#         ],
-#         "*/30 * * * *": [
-#             "pos_syc.api.periodic_sync_hook_30min"
-#         ],
-#         "*/60 * * * *": [
-#             "pos_syc.api.periodic_sync_hook_60min"
-#         ]
-#     }
-# }
+scheduler_events = {
+    "cron": {
+        "*/5 * * * *": [
+            "pos_syc.api.periodic_sync_hook_5min"
+        ],
+        "*/10 * * * *": [
+            "pos_syc.api.periodic_sync_hook_10min"
+        ],
+        "*/20 * * * *": [
+            "pos_syc.api.periodic_sync_hook_20min"
+        ],
+        "*/30 * * * *": [
+            "pos_syc.api.periodic_sync_hook_30min"
+        ],
+        "*/60 * * * *": [
+            "pos_syc.api.periodic_sync_hook_60min"
+        ]
+    }
+}
 
 # Testing
 # -------
