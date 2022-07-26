@@ -51,7 +51,6 @@ def create_customer(item_dict):
             """
             
             create_sync_log("Create", data=log_data)
-            print("post")
         except Exception as e:
             create_sync_log("Error")
     

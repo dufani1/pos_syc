@@ -53,7 +53,6 @@ def create_item(item_dict):
             """
             
             create_sync_log("Create", data=log_data)
-            print("post")
         except Exception as e:
             create_sync_log("Error")
     
@@ -75,7 +74,6 @@ def create_item(item_dict):
                 if len(child_table_data) > 0:
                     item_dict[child_table_data[0].get("parentfield")] = child_table_data
             frappe.delete_doc_if_exists("Item", item_dict.get("name"), force=True)
-            print("insert", item_dict)
             new_item = frappe.get_doc(item_dict)
             # new_item.flags.ignore_mandatory = True
             # new_item.flags.ignore_validate = True
