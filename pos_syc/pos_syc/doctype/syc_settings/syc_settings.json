@@ -9,6 +9,7 @@
   "periodic_sync",
   "column_break_2",
   "last_update",
+  "initiated",
   "settings_and_security_section",
   "sym_domain",
   "column_break_4",
@@ -61,12 +62,18 @@
    "fieldtype": "Datetime",
    "label": "Last Update",
    "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "initiated",
+   "fieldtype": "Check",
+   "label": "Initiated"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2022-07-26 09:28:19.238744",
+ "modified": "2022-07-27 19:19:33.388044",
  "modified_by": "Administrator",
  "module": "Pos Syc",
  "name": "SYC Settings",
