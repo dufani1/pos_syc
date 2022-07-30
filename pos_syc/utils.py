@@ -1,11 +1,11 @@
 import frappe
 
-def get_syc_settings():
+def syc_get_settings():
     return  frappe.get_single("SYC Settings")
 
 
 def update_last_sync_time():
-    syc_settings = get_syc_settings()
+    syc_settings = syc_get_settings()
     syc_settings.last_update = frappe.utils.now()
 
     syc_settings.save()

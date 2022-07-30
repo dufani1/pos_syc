@@ -1,10 +1,10 @@
 import json
 import frappe
 import requests
-from pos_syc.utils import create_sync_log, get_syc_settings 
+from pos_syc.utils import create_sync_log, syc_get_settings 
 
 def get_request(method: str, params=None):
-    syc_settings = get_syc_settings()
+    syc_settings = syc_get_settings()
 
     try:
         response = requests.get(
@@ -34,7 +34,7 @@ def get_request(method: str, params=None):
         print(e)
         create_sync_log("Error", data = frappe.get_traceback())
 def post_request(method: str, data=None):
-    syc_settings = get_syc_settings()
+    syc_settings = syc_get_settings()
 
     response = requests.post(
         url=syc_settings.sym_domain + "/api/method/" + method,

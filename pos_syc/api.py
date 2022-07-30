@@ -1,7 +1,7 @@
 import frappe
 from pos_syc.sync_customers import sync_customers
 from pos_syc.sync_items import sync_items
-from pos_syc.utils import create_sync_log, get_syc_settings, update_last_sync_time
+from pos_syc.utils import create_sync_log, update_last_sync_time
 
 def periodic_sync_hook_5min():
     if frappe.get_single("SYC Settings").periodic_sync == "5":
@@ -23,7 +23,8 @@ def periodic_sync_hook_60min():
     if frappe.get_single("SYC Settings").periodic_sync == "60":
         syc_sync_main()
 
-@frappe.whitelist()
+
+@frappe.whitelist(allow_guest=False, methods=["GET"])
 def syc_sync_main():
     # enqueue jobs in production
     frappe.enqueue(_sync_main, queue="long", is_async=True, job_name="SYC Main Sync")
@@ -45,15 +46,15 @@ def _sync_main():
         create_sync_log(status="Error", data=frappe.get_traceback())
 
 
-@frappe.whitelist(allow_guest=False, methods=["GET"])
-def syc_reset_last_update():
-    syc_settings = get_syc_settings()
-    syc_settings.last_update = None
+# @frappe.whitelist(allow_guest=False, methods=["GET"])
+# def syc_reset_last_update():
+#     syc_settings = get_syc_settings()
+#     syc_settings.last_update = None
 
-    syc_settings.save()
-    frappe.db.commit()
+#     syc_settings.save()
+#     frappe.db.commit()
 
-    return syc_settings.last_update
+#     return syc_settings.last_update
 
 
 

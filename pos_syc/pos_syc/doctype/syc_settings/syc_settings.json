@@ -8,10 +8,10 @@
  "field_order": [
   "periodic_sync",
   "column_break_2",
-  "last_update",
-  "initiated",
+  "is_prepared",
   "settings_and_security_section",
   "sym_domain",
+  "client_id",
   "column_break_4",
   "api_key",
   "api_secret"
@@ -58,22 +58,23 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "last_update",
-   "fieldtype": "Datetime",
-   "label": "Last Update",
-   "read_only": 1
+   "fieldname": "client_id",
+   "fieldtype": "Data",
+   "label": "Client ID",
+   "reqd": 1
   },
   {
    "default": "0",
-   "fieldname": "initiated",
+   "fieldname": "is_prepared",
    "fieldtype": "Check",
-   "label": "Initiated"
+   "label": "Is Prepared",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2022-07-27 19:19:33.388044",
+ "modified": "2022-07-30 14:29:43.502573",
  "modified_by": "Administrator",
  "module": "Pos Syc",
  "name": "SYC Settings",

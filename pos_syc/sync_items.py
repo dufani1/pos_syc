@@ -1,10 +1,10 @@
 import frappe
 from pos_syc.requests_api import get_request
-from pos_syc.utils import get_syc_settings, create_sync_log
+from pos_syc.utils import syc_get_settings, create_sync_log
 
 
 def sync_items():
-    last_update = get_syc_settings().last_update
+    last_update = syc_get_settings().last_update
 
     try:
         res = get_request(
