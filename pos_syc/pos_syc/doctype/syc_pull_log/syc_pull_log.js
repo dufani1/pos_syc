@@ -1,7 +1,7 @@
 // Copyright (c) 2022, . and contributors
 // For license information, please see license.txt
 
-frappe.ui.form.on('SYC Sync Logs', {
+frappe.ui.form.on('SYC Pull Log', {
 	// refresh: function(frm) {
 
 	// }

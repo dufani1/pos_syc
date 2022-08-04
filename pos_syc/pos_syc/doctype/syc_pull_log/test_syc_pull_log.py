@@ -4,5 +4,5 @@
 # import frappe
 import unittest
 
-class TestSYCSyncLogs(unittest.TestCase):
+class TestSYCPullLog(unittest.TestCase):
 	pass

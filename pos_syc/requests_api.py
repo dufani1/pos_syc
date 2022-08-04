@@ -1,7 +1,7 @@
 import json
 import frappe
 import requests
-from pos_syc.utils import create_sync_log, syc_get_settings 
+from pos_syc.utils import syc_create_pull_log, syc_get_settings 
 
 def get_request(method: str, params=None):
     syc_settings = syc_get_settings()
@@ -27,12 +27,13 @@ def get_request(method: str, params=None):
                 text: {response.text}
             """
             print(log_data)
-            create_sync_log("Request Error", data = log_data)
+            frappe.log_error(log_data)
 
             return None
     except Exception as e:
         print(e)
-        create_sync_log("Error", data = frappe.get_traceback())
+        frappe.log_error(log_data, title="SYC Request Error")
+
 def post_request(method: str, data=None):
     syc_settings = syc_get_settings()
 
@@ -56,5 +57,6 @@ def post_request(method: str, data=None):
             text: {response.text}
         """
         print(log_data)
-        create_sync_log("Request Error", data = log_data)
+        frappe.log_error(log_data, title="SYC Request Error")
+
         return None

@@ -1,0 +1,110 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-07-23 22:50:09.120317",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sym_backlog_name",
+  "section_break_2",
+  "event",
+  "column_break_2",
+  "status",
+  "section_break_4",
+  "ref_doctype",
+  "column_break_6",
+  "ref_docname",
+  "section_break_6",
+  "data",
+  "create"
+ ],
+ "fields": [
+  {
+   "fieldname": "event",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Event",
+   "options": "\nInit\nInsert\nUpdate\nDelete"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "\nPending\nSuccess\nFailed"
+  },
+  {
+   "fieldname": "section_break_6",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "data",
+   "fieldtype": "Code",
+   "label": "Data",
+   "options": "JSON"
+  },
+  {
+   "fieldname": "create",
+   "fieldtype": "Datetime",
+   "label": "Create",
+   "options": "NOW"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "ref_doctype",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Doc Type"
+  },
+  {
+   "fieldname": "ref_docname",
+   "fieldtype": "Data",
+   "label": "Doc Name"
+  },
+  {
+   "fieldname": "sym_backlog_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "SYM Backlog Name"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-08-04 10:11:19.725030",
+ "modified_by": "Administrator",
+ "module": "Pos Syc",
+ "name": "SYC Pull Log",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

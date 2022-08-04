@@ -13,7 +13,7 @@
  "is_standard": 1,
  "label": "SYC Dashboard",
  "links": [],
- "modified": "2022-07-24 10:15:07.156648",
+ "modified": "2022-07-30 17:52:38.528882",
  "modified_by": "Administrator",
  "module": "Pos Syc",
  "name": "SYC Dashboard",
@@ -23,14 +23,20 @@
  "shortcuts": [
   {
    "doc_view": "",
-   "label": "SYC Sync Logs",
-   "link_to": "SYC Sync Logs",
+   "label": "SYC Pull Log",
+   "link_to": "SYC Pull Log",
    "type": "DocType"
   },
   {
    "doc_view": "",
    "label": "SYC Settings",
    "link_to": "SYC Settings",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "",
+   "label": "Error Log",
+   "link_to": "Error Log",
    "type": "DocType"
   }
  ]

@@ -3,19 +3,32 @@
 
 frappe.ui.form.on('SYC Settings', {
 	refresh: function(frm) {
-		var sync_button = frm.add_custom_button("Backlogs Sync", function() {
-			sync_button.prop("disabled", true);
-			setTimeout(()=> {
-				sync_button.prop("disabled", false);
-			}, 3000);
-	
+		var eval_button = frm.add_custom_button("Eval Pull Logs", function() {
+			
 			frappe.call({
-				method: "pos_syc.api.syc_sync_main",
+				method: "pos_syc.api.syc_eval_pull_logs",
 				callback: function(r) {
 					if (r.message) {
-						frappe.show_alert("SYC: Sync in Progress", 3);
+
 					} else {
-						frappe.show_alert("SYC: Sync Failed to Start", 3);
+					}
+				}
+			})
+		});
+
+		var sync_button = frm.add_custom_button("Pull Backlogs", function() {
+			
+			frappe.call({
+				method: "pos_syc.api._syc_pull_backlogs",
+				callback: function(r) {
+					if (r.message) {
+						frappe.show_alert("SYC: Sync in Progress", 8);
+						sync_button.prop("disabled", true);
+						setTimeout(()=> {
+							sync_button.prop("disabled", false);
+						}, 8000);
+					} else {
+						frappe.show_alert("SYC: Sync Failed to Start", 8);
 					}
 				}
 			})
@@ -31,6 +44,7 @@ frappe.ui.form.on('SYC Settings', {
 					if(r.message) {
 						frm.doc.is_prepared = 1;
 						frm.refresh_field("is_prepared");
+						frm.refresh_field("preparation_date");
 						frappe.show_alert("SYC: POS Prepared Successfully!", 8);
 					} else {
 						frappe.show_alert("SYC: POS Prepare Failed!", 8);
@@ -50,7 +64,7 @@ frappe.ui.form.on('SYC Settings', {
 
 		// revoke preparations
 		var revoke_pos = frm.add_custom_button("Revoke Preparations", function() {
-			frappe.confirm("SYC: This will Revoke all SYM Backlogs for this client, Are you Sure ?", () => {
+			// frappe.confirm("SYC: This will Revoke all the SYM Backlogs for this client, Are you Sure ?", () => {
 				frappe.call({
 					type: "POST",
 					method: "pos_syc.syc_prepare_pos.revoke",
@@ -74,7 +88,7 @@ frappe.ui.form.on('SYC Settings', {
 						}
 					}
 				})
-			})
+			// })
 		})
 
 		if(!frm.doc.is_prepared) {
