@@ -95,13 +95,20 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	"*": {
+		# "after_insert": [
+		# 	"pos_sym.sym_customers.sym_doc_event"
+		# ],
+		"validate": [
+			"pos_syc.api.syc_doc_event",
+		],
+		"on_trash": [
+			"pos_syc.api.syc_doc_event"
+		]
+
+	}
+}
 
 # Scheduled Tasks
 # ---------------

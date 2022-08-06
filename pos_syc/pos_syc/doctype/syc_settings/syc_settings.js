@@ -16,19 +16,37 @@ frappe.ui.form.on('SYC Settings', {
 			})
 		});
 
-		var sync_button = frm.add_custom_button("Pull Backlogs", function() {
+		var pull_button = frm.add_custom_button("Pull Backlogs", function() {
 			
 			frappe.call({
 				method: "pos_syc.api._syc_pull_backlogs",
 				callback: function(r) {
 					if (r.message) {
-						frappe.show_alert("SYC: Sync in Progress", 8);
-						sync_button.prop("disabled", true);
+						frappe.show_alert("SYC: Pull in Progress", 8);
+						pull_button.prop("disabled", true);
 						setTimeout(()=> {
-							sync_button.prop("disabled", false);
+							pull_button.prop("disabled", false);
 						}, 8000);
 					} else {
-						frappe.show_alert("SYC: Sync Failed to Start", 8);
+						frappe.show_alert("SYC: Pull Failed to Start", 8);
+					}
+				}
+			})
+		});
+
+		var push_button = frm.add_custom_button("Push Backlogs", function() {
+			
+			frappe.call({
+				method: "pos_syc.api._syc_push_backlogs",
+				callback: function(r) {
+					if (r.message) {
+						frappe.show_alert("SYC: Push in Progress", 8);
+						push_button.prop("disabled", true);
+						setTimeout(()=> {
+							push_button.prop("disabled", false);
+						}, 8000);
+					} else {
+						frappe.show_alert("SYC: Push Failed to Start", 8);
 					}
 				}
 			})
@@ -38,7 +56,7 @@ frappe.ui.form.on('SYC Settings', {
 		var prepare_pos = frm.add_custom_button("Prepare POS", function() {
 			frappe.call({
 				type: "POST",
-				method: "pos_syc.syc_prepare_pos.prepare",
+				method: "pos_syc.api.prepare",
 				callback: function(r) {
 					console.log(r.message);
 					if(r.message) {
@@ -50,11 +68,15 @@ frappe.ui.form.on('SYC Settings', {
 						frappe.show_alert("SYC: POS Prepare Failed!", 8);
 					}
 					if(!frm.doc.is_prepared) {
-						sync_button.prop("disabled", true);
+						eval_button.prop("disabled", true);
+						pull_button.prop("disabled", true);
+						push_button.prop("disabled", true);
 						prepare_pos.prop("disabled", false);
 						revoke_pos.prop("disabled", true);
 					} else {
-						sync_button.prop("disabled", false);
+						eval_button.prop("disabled", false);
+						pull_button.prop("disabled", false);
+						push_button.prop("disabled", false);
 						prepare_pos.prop("disabled", true);
 						revoke_pos.prop("disabled", false);
 					}
@@ -62,12 +84,30 @@ frappe.ui.form.on('SYC Settings', {
 			})
 		})
 
+		// var syc_prepare = frm.add_custom_button("SYC Prepare", function() {
+		// 	frappe.call({
+		// 		type: "POST",
+		// 		method: "pos_syc.api.syc_prepare",
+		// 		callback: function(r) {
+		// 			console.log(r.message);
+		// 			if(r.message) {
+		// 				frm.doc.is_prepared = 1;
+		// 				frm.refresh_field("is_prepared");
+		// 				frm.refresh_field("preparation_date");
+		// 				frappe.show_alert("SYC: SYC Prepared Successfully!", 8);
+		// 			} else {
+		// 				frappe.show_alert("SYC: SYC Prepare Failed!", 8);
+		// 			}
+		// 		}
+		// 	})
+		// })
+
 		// revoke preparations
 		var revoke_pos = frm.add_custom_button("Revoke Preparations", function() {
 			// frappe.confirm("SYC: This will Revoke all the SYM Backlogs for this client, Are you Sure ?", () => {
 				frappe.call({
 					type: "POST",
-					method: "pos_syc.syc_prepare_pos.revoke",
+					method: "pos_syc.api.revoke",
 					callback: function(r) {
 						console.log(r.message);
 						if(r.message) {
@@ -78,11 +118,15 @@ frappe.ui.form.on('SYC Settings', {
 							frappe.show_alert("SYC: POS Revoke Failed!", 8);
 						}
 						if(!frm.doc.is_prepared) {
-							sync_button.prop("disabled", true);
+							eval_button.prop("disabled", true);
+							pull_button.prop("disabled", true);
+							push_button.prop("disabled", true);
 							prepare_pos.prop("disabled", false);
 							revoke_pos.prop("disabled", true);
 						} else {
-							sync_button.prop("disabled", false);
+							eval_button.prop("disabled", false);
+							pull_button.prop("disabled", false);
+							push_button.prop("disabled", false);
 							prepare_pos.prop("disabled", true);
 							revoke_pos.prop("disabled", false);
 						}
@@ -92,11 +136,15 @@ frappe.ui.form.on('SYC Settings', {
 		})
 
 		if(!frm.doc.is_prepared) {
-			sync_button.prop("disabled", true);
+			eval_button.prop("disabled", true);
+			pull_button.prop("disabled", true);
+			push_button.prop("disabled", true);
 			prepare_pos.prop("disabled", false);
 			revoke_pos.prop("disabled", true);
 		} else {
-			sync_button.prop("disabled", false);
+			eval_button.prop("disabled", false);
+			pull_button.prop("disabled", false);
+			push_button.prop("disabled", false);
 			prepare_pos.prop("disabled", true);
 			revoke_pos.prop("disabled", false);
 		}

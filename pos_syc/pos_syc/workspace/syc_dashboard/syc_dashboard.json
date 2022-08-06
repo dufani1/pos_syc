@@ -13,7 +13,7 @@
  "is_standard": 1,
  "label": "SYC Dashboard",
  "links": [],
- "modified": "2022-07-30 17:52:38.528882",
+ "modified": "2022-08-05 10:59:45.103292",
  "modified_by": "Administrator",
  "module": "Pos Syc",
  "name": "SYC Dashboard",
@@ -21,6 +21,12 @@
  "pin_to_bottom": 0,
  "pin_to_top": 1,
  "shortcuts": [
+  {
+   "doc_view": "",
+   "label": "SYC Backlog",
+   "link_to": "SYC Backlog",
+   "type": "DocType"
+  },
   {
    "doc_view": "",
    "label": "SYC Pull Log",

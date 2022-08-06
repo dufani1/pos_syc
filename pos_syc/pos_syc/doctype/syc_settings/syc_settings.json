@@ -9,7 +9,6 @@
   "periodic_sync",
   "column_break_2",
   "is_prepared",
-  "preparation_date",
   "settings_and_security_section",
   "sym_domain",
   "client_id",
@@ -70,18 +69,12 @@
    "fieldtype": "Check",
    "label": "Is Prepared",
    "read_only": 1
-  },
-  {
-   "depends_on": "eval:doc.is_prepared===1",
-   "fieldname": "preparation_date",
-   "fieldtype": "Datetime",
-   "label": "Preparation Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2022-07-30 16:07:01.201251",
+ "modified": "2022-08-05 15:14:35.725166",
  "modified_by": "Administrator",
  "module": "Pos Syc",
  "name": "SYC Settings",
