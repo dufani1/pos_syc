@@ -1,7 +1,5 @@
 import frappe
-from frappe.utils import now
-from pos_syc.utils import syc_clear_backlogs, syc_create_backlog
-from pos_sym.utils import sym_clear_backlogs, sym_create_backlog, sym_get_pos_clients
+from pos_syc.utils import syc_create_backlog
 
 CONTROLLER_DOCTYPE = "POS Invoice"
 
@@ -39,7 +37,7 @@ def create_update_backlog(event_doc):
     )
 
 def create_delete_backlog(event_doc):
-    sym_create_backlog(
+    syc_create_backlog(
         doctype=CONTROLLER_DOCTYPE,
         docname=event_doc.name,
         data=event_doc.as_json(),

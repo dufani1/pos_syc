@@ -3,44 +3,63 @@
 
 frappe.ui.form.on('SYC Settings', {
 	refresh: function(frm) {
-		var eval_button = frm.add_custom_button("Eval Pull Logs", function() {
+		// var eval_button = frm.add_custom_button("Eval Pull Logs", function() {
+			
+		// 	frappe.call({
+		// 		method: "pos_syc.api.syc_eval_pull_logs",
+		// 		callback: function(r) {
+		// 			if (r.message) {
+
+		// 			} else {
+		// 			}
+		// 		}
+		// 	})
+		// });
+
+		// var pull_button = frm.add_custom_button("Pull Backlogs", function() {
+			
+		// 	frappe.call({
+		// 		method: "pos_syc.api._syc_pull_backlogs",
+		// 		callback: function(r) {
+		// 			if (r.message) {
+		// 				frappe.show_alert("SYC: Pull in Progress", 8);
+		// 				pull_button.prop("disabled", true);
+		// 				setTimeout(()=> {
+		// 					pull_button.prop("disabled", false);
+		// 				}, 8000);
+		// 			} else {
+		// 				frappe.show_alert("SYC: Pull Failed to Start", 8);
+		// 			}
+		// 		}
+		// 	})
+		// });
+
+		// var push_button = frm.add_custom_button("Push Backlogs", function() {
+			
+		// 	frappe.call({
+		// 		method: "pos_syc.api._syc_push_backlogs",
+		// 		callback: function(r) {
+		// 			if (r.message) {
+		// 				frappe.show_alert("SYC: Push in Progress", 8);
+		// 				push_button.prop("disabled", true);
+		// 				setTimeout(()=> {
+		// 					push_button.prop("disabled", false);
+		// 				}, 8000);
+		// 			} else {
+		// 				frappe.show_alert("SYC: Push Failed to Start", 8);
+		// 			}
+		// 		}
+		// 	})
+		// });
+		
+
+		var sync_button = frm.add_custom_button("Enqueue Sync Job", function() {
 			
 			frappe.call({
-				method: "pos_syc.api.syc_eval_pull_logs",
+				method: "pos_syc.api.enqueue_sync_job",
 				callback: function(r) {
 					if (r.message) {
-
-					} else {
-					}
-				}
-			})
-		});
-
-		var pull_button = frm.add_custom_button("Pull Backlogs", function() {
-			
-			frappe.call({
-				method: "pos_syc.api._syc_pull_backlogs",
-				callback: function(r) {
-					if (r.message) {
-						frappe.show_alert("SYC: Pull in Progress", 8);
-						pull_button.prop("disabled", true);
-						setTimeout(()=> {
-							pull_button.prop("disabled", false);
-						}, 8000);
-					} else {
-						frappe.show_alert("SYC: Pull Failed to Start", 8);
-					}
-				}
-			})
-		});
-
-		var push_button = frm.add_custom_button("Push Backlogs", function() {
-			
-			frappe.call({
-				method: "pos_syc.api._syc_push_backlogs",
-				callback: function(r) {
-					if (r.message) {
-						frappe.show_alert("SYC: Push in Progress", 8);
+						frappe.show_alert("SYC: Sync in Progress", 8);
 						push_button.prop("disabled", true);
 						setTimeout(()=> {
 							push_button.prop("disabled", false);
@@ -51,7 +70,7 @@ frappe.ui.form.on('SYC Settings', {
 				}
 			})
 		});
-
+		
 		// prepare pos
 		var prepare_pos = frm.add_custom_button("Prepare POS", function() {
 			frappe.call({
@@ -68,15 +87,17 @@ frappe.ui.form.on('SYC Settings', {
 						frappe.show_alert("SYC: POS Prepare Failed!", 8);
 					}
 					if(!frm.doc.is_prepared) {
-						eval_button.prop("disabled", true);
-						pull_button.prop("disabled", true);
-						push_button.prop("disabled", true);
+						// eval_button.prop("disabled", true);
+						// pull_button.prop("disabled", true);
+						// push_button.prop("disabled", true);
+						sync_button.prop("disabled", true);
 						prepare_pos.prop("disabled", false);
 						revoke_pos.prop("disabled", true);
 					} else {
-						eval_button.prop("disabled", false);
-						pull_button.prop("disabled", false);
-						push_button.prop("disabled", false);
+						// eval_button.prop("disabled", false);
+						// pull_button.prop("disabled", false);
+						// push_button.prop("disabled", false);
+						sync_button.prop("disabled", false);
 						prepare_pos.prop("disabled", true);
 						revoke_pos.prop("disabled", false);
 					}
@@ -118,15 +139,17 @@ frappe.ui.form.on('SYC Settings', {
 							frappe.show_alert("SYC: POS Revoke Failed!", 8);
 						}
 						if(!frm.doc.is_prepared) {
-							eval_button.prop("disabled", true);
-							pull_button.prop("disabled", true);
-							push_button.prop("disabled", true);
+							// eval_button.prop("disabled", true);
+							// pull_button.prop("disabled", true);
+							// push_button.prop("disabled", true);
+							sync_button.prop("disabled", true);
 							prepare_pos.prop("disabled", false);
 							revoke_pos.prop("disabled", true);
 						} else {
-							eval_button.prop("disabled", false);
-							pull_button.prop("disabled", false);
-							push_button.prop("disabled", false);
+							// eval_button.prop("disabled", false);
+							// pull_button.prop("disabled", false);
+							// push_button.prop("disabled", false);
+							sync_button.prop("disabled", false);
 							prepare_pos.prop("disabled", true);
 							revoke_pos.prop("disabled", false);
 						}
@@ -136,15 +159,17 @@ frappe.ui.form.on('SYC Settings', {
 		})
 
 		if(!frm.doc.is_prepared) {
-			eval_button.prop("disabled", true);
-			pull_button.prop("disabled", true);
-			push_button.prop("disabled", true);
+			// eval_button.prop("disabled", true);
+			// pull_button.prop("disabled", true);
+			// push_button.prop("disabled", true);
+			sync_button.prop("disabled", true);
 			prepare_pos.prop("disabled", false);
 			revoke_pos.prop("disabled", true);
 		} else {
-			eval_button.prop("disabled", false);
-			pull_button.prop("disabled", false);
-			push_button.prop("disabled", false);
+			// eval_button.prop("disabled", false);
+			// pull_button.prop("disabled", false);
+			// push_button.prop("disabled", false);
+			sync_button.prop("disabled", false);
 			prepare_pos.prop("disabled", true);
 			revoke_pos.prop("disabled", false);
 		}

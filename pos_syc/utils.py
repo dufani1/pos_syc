@@ -73,7 +73,6 @@ def syc_get_pull_logs():
     pull_logs = frappe.get_all(
         "SYC Pull Log",
         fields="*",
-        filters={},
         order_by="modified asc"
     )
 

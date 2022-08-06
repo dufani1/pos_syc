@@ -17,6 +17,7 @@
   "ref_docname",
   "section_break_6",
   "data",
+  "fail_reason",
   "create"
  ],
  "fields": [
@@ -82,11 +83,17 @@
   {
    "fieldname": "section_break_2",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "fail_reason",
+   "fieldtype": "Long Text",
+   "label": "Fail Reason",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-08-04 10:11:19.725030",
+ "modified": "2022-08-06 11:24:07.577413",
  "modified_by": "Administrator",
  "module": "Pos Syc",
  "name": "SYC Pull Log",
