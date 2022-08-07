@@ -29,8 +29,8 @@ def periodic_sync_hook_60min():
 
 @frappe.whitelist(allow_guest=False, methods=["POST"])
 def enqueue_sync_job():
-    # frappe.enqueue(method=_syc_push_backlogs, enqueue="long", job_name="SYC Sync Main")
-    _syc_push_backlogs()
+    frappe.enqueue(method=_syc_push_backlogs, enqueue="long", job_name="SYC Sync Main")
+    # _syc_push_backlogs()
     return True
 
 @frappe.whitelist(allow_guest=False, methods=["POST"])
