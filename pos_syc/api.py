@@ -54,6 +54,7 @@ def syc_pull_backlogs():
         if res:
 
             backlogs = res.json()["message"]
+
             if backlogs:
                 # syc_clear_pull_logs()
                 # insert received backlogs
@@ -125,10 +126,11 @@ def syc_eval_pull_logs():
             continue
         if plog.event == "Init" or plog.event == "Insert":
             try:
-                
+                # if plog.ref_docname == "tax 1 template - ET":
+                #     frappe.throw("Doctype XYZ is required")
                 parsed_log_data = frappe.parse_json(plog.data)
                 parsed_log_data["doctype"] = plog.ref_doctype
-                frappe.throw("failed")
+
                 frappe.delete_doc_if_exists(doctype=plog.ref_doctype, name=plog.ref_docname, force=True)
 
                 new_insert = frappe.get_doc(parsed_log_data) 
@@ -234,6 +236,7 @@ def prepare():
             if res.json()["message"]:
                 syc_settings = syc_get_settings()
                 syc_settings.is_prepared = 1
+                syc_settings.preparation_date = nowdate()
                 syc_settings.save()
                 
                 # pull backlogs on preparation success
@@ -263,7 +266,7 @@ def revoke():
             if res.json()["message"]:
                 syc_settings = syc_get_settings()
                 syc_settings.is_prepared = 0
-                syc_settings.preparation_date = nowdate()
+                syc_settings.preparation_date = None
                 syc_settings.save()
 
                 # clear all logs

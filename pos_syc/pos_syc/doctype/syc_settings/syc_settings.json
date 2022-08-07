@@ -8,6 +8,7 @@
  "field_order": [
   "periodic_sync",
   "column_break_2",
+  "preparation_date",
   "is_prepared",
   "settings_and_security_section",
   "sym_domain",
@@ -76,12 +77,18 @@
    "fieldname": "debug_mode",
    "fieldtype": "Check",
    "label": "Debug Mode"
+  },
+  {
+   "fieldname": "preparation_date",
+   "fieldtype": "Datetime",
+   "label": "Preparation Date",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2022-08-06 16:19:05.129243",
+ "modified": "2022-08-07 10:19:39.875445",
  "modified_by": "Administrator",
  "module": "Pos Syc",
  "name": "SYC Settings",

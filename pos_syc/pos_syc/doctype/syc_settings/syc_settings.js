@@ -80,8 +80,8 @@ frappe.ui.form.on('SYC Settings', {
 					console.log(r.message);
 					if(r.message) {
 						frm.doc.is_prepared = 1;
-						frm.refresh_field("is_prepared");
-						frm.refresh_field("preparation_date");
+						frm.doc.preparation_date = frappe.datetime.now_datetime();
+						cur_frm.refresh_fields();
 						frappe.show_alert("SYC: POS Prepared Successfully!", 8);
 					} else {
 						frappe.show_alert("SYC: POS Prepare Failed!", 8);
@@ -133,7 +133,8 @@ frappe.ui.form.on('SYC Settings', {
 						console.log(r.message);
 						if(r.message) {
 							frm.doc.is_prepared = 0;
-							frm.refresh_field("is_prepared");
+							frm.doc.preparation_date = undefined;
+							cur_frm.refresh_fields();
 							frappe.show_alert("SYC: POS Preparations Revoked Successfully!", 8);
 						} else {
 							frappe.show_alert("SYC: POS Revoke Failed!", 8);
